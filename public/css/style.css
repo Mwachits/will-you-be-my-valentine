@@ -1,131 +1,386 @@
-body {
-    background-color: white;
-    font-family: Arial, sans-serif;
+/* ===== Global Styles ===== */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f8f8f8;
+    color: #333;
+    overflow-x: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ===== Preloader ===== */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #fff;
+    border-bottom-color: #ff69b4;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.preloader p {
+    color: white;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+/* ===== Nickname Screen ===== */
+.nickname-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.9);
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    z-index: 999;
 }
 
-.buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    flex-direction: row;
-    align-items: end;
-    flex-wrap: wrap;
+.nickname-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    max-width: 400px;
+    width: 90%;
 }
 
-#no-button {
-    margin: 0 10px;
+.nickname-card h2 {
+    color: #ff69b4;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.nickname-card input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.nickname-card button {
+    background: #ff69b4;
     color: white;
-    background-color: red;
-    height: 40px !important;
-    width: auto;
     border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
     cursor: pointer;
-    margin-top: 10px;
-
-    p {
-        margin: 0;
-        object-fit: contain;
-    }
+    font-size: 1rem;
+    transition: transform 0.3s;
 }
 
-#yes-button {
-    margin: 0 10px;
-    color: white;
-    border: none;
-    background-color: green;
-    cursor: pointer;
-    height: 40px;
-
-    p {
-        margin: 0;
-        object-fit: contain;
-    }
+.nickname-card button:hover {
+    transform: translateY(-2px);
 }
 
-/* Make responsive for mobile */
-@media (max-width: 768px) {
-    body {
-        padding: 0 20px;
-    }
+.error-msg {
+    color: #ff4444;
+    margin-top: 1rem;
+    font-size: 0.9rem;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 20px;
-    padding: 20px;
+/* ===== Celebration ===== */
+.celebration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 998;
+}
+
+.flowers {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); }
+    100% { transform: translateY(-100vh); }
+}
+
+.flowers::after {
+    content: "🌸🌺🌷💐🌹";
+    position: absolute;
+    font-size: 2rem;
+    width: 100%;
     text-align: center;
 }
 
-.message {
-    display: none;
+/* ===== Dashboard ===== */
+.dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
-.banner-gif {
+.parallax {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
-    margin-top: 20px;
-
-    img {
-        width: auto;
-        height: 250px;
-    }
+    height: 100vh;
+    background: url('./public/images/parallax.jpg') center/cover no-repeat;
+    z-index: -1;
+    animation: parallaxScroll 10s linear infinite;
 }
 
-.language-selector {
-    margin-top: 30px;
-    position: unset;
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+@keyframes parallaxScroll {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
 }
 
-.language-selector label {
-    margin-right: 10px;
+header {
+    text-align: center;
+    padding: 100px 20px 50px;
+    background: rgba(255, 255, 255, 0.8);
+    margin-bottom: 50px;
 }
 
-.language-selector select {
-    padding: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
+header h1 {
+    font-size: 3rem;
+    color: #ff69b4;
+    margin-bottom: 10px;
 }
 
-.creator {
-    text-decoration: none;
-    color: #333;
-}
-
-.creator:visited {
-    text-decoration: none;
-    color: #333;
-}
-
-.creator:hover {
-    text-decoration: underline;
+header p {
+    font-size: 1.2rem;
     color: #555;
 }
 
-/* CSS For Mobile */
+/* ===== Timeline ===== */
+.timeline {
+    padding: 50px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 50px 0;
+}
+
+.timeline h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #ff69b4;
+    margin-bottom: 30px;
+}
+
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.timeline-item {
+    width: 80%;
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20px;
+    width: 2px;
+    height: 100%;
+    background: #ff69b4;
+}
+
+.timeline-content h3 {
+    font-size: 1.5rem;
+    color: #ff69b4;
+    margin-bottom: 10px;
+}
+
+.timeline-content p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.timeline-content .date {
+    display: block;
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 10px;
+}
+
+/* ===== Love Letter ===== */
+.love-letter {
+    padding: 50px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 50px 0;
+}
+
+.love-letter h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #ff69b4;
+    margin-bottom: 30px;
+}
+
+.letter-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* ===== Gallery ===== */
+.gallery {
+    padding: 50px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 50px 0;
+}
+
+.gallery h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #ff69b4;
+    margin-bottom: 30px;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.photo-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.photo-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.photo-item:hover img {
+    transform: scale(1.1);
+}
+
+.photo-item p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* ===== Quotes Carousel ===== */
+.quotes {
+    padding: 50px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 50px 0;
+}
+
+.quotes h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #ff69b4;
+    margin-bottom: 30px;
+}
+
+.carousel {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.quote {
+    font-size: 1.5rem;
+    color: #555;
+    font-style: italic;
+    margin-bottom: 20px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.quote.visible {
+    opacity: 1;
+}
+
+/* ===== Music Player ===== */
+.music-player {
+    padding: 50px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 50px 0;
+}
+
+.music-player h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #ff69b4;
+    margin-bottom: 30px;
+}
+
+audio {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    display: block;
+}
+
+/* ===== Responsive Design ===== */
 @media (max-width: 768px) {
-    .language-selector {
-        position: unset;
-        margin-top: 30px;
-        font-family: Arial, sans-serif;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .timeline-item {
+        width: 90%;
+    }
+
+    .quote {
+        font-size: 1.2rem;
     }
 }
